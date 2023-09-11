@@ -2,8 +2,10 @@ import React, { useState } from "react";
 import { auth, app } from "../firebase";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import "bootstrap/dist/css/bootstrap.min.css";
+import { useNavigate } from "react-router";
 
 const Login = () => {
+  const navigate = useNavigate("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
@@ -14,6 +16,7 @@ const Login = () => {
     signInWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
         // Signed in
+        navigate("/dashboard");
         console.log(userCredential.user);
         // ...
       })
@@ -23,9 +26,9 @@ const Login = () => {
   };
 
   return (
-    <div>
+    <div className="container border rounded w-25 align-items-center">
       <p>Connexion</p>
-      <form onSubmit={signIn}>
+      <form onSubmit={signIn} className="">
         <div className="form-outline mb-4">
           <input
             id="form2Example1-3"
@@ -80,7 +83,7 @@ const Login = () => {
           </div>
         </div>
 
-        <button type="submit" className="btn btn-primary btn-block mb-4">
+        <button type="submit" className="btn btn-primary btn-block mb-4 w-100">
           Login
         </button>
       </form>
