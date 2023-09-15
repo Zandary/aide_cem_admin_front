@@ -1,6 +1,6 @@
 {
-  "short_name": "React App",
-  "name": "Create React App Sample",
+  "short_name": "Aide CEM Admin",
+  "name": "Administration du contenu de Aide CEM",
   "icons": [
     {
       "src": "favicon.ico",

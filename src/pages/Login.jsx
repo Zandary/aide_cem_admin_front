@@ -1,6 +1,6 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { auth, app } from "../firebase";
-import { signInWithEmailAndPassword } from "firebase/auth";
+import { signInWithEmailAndPassword, setPersistence, browserLocalPersistence, onAuthStateChanged } from "firebase/auth";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { useNavigate } from "react-router";
 
@@ -8,17 +8,41 @@ const Login = () => {
   const navigate = useNavigate("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [user, setUser] = useState(null);
 
   console.log(email, password);
+
+  useEffect(() => {
+    const unsubscribe = onAuthStateChanged(auth, (user) => {
+      if (user) {
+        // User is logged in
+        setUser(user);
+      } else {
+        // User is logged out
+        setUser(null);
+      }
+    });
+  
+    // Clean up the listener when the component unmounts
+    return () => unsubscribe();
+  }, []);
 
   const signIn = (e) => {
     e.preventDefault();
     signInWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
-        // Signed in
-        navigate("/dashboard");
-        console.log(userCredential.user);
-        // ...
+        // Enable local persistence
+        setPersistence(auth, browserLocalPersistence)
+          .then(() => {
+            // Signed in
+            setUser(userCredential.user); // Update the user state
+            navigate("/dashboard");
+            console.log(userCredential.user);
+            // ...
+          })
+          .catch((error) => {
+            console.log(error);
+          });
       })
       .catch((error) => {
         console.log(error);
@@ -26,7 +50,7 @@ const Login = () => {
   };
 
   return (
-    <div className="container border rounded w-25 align-items-center">
+    <div className="container border rounded w-50 align-items-center">
       <p>Connexion</p>
       <form onSubmit={signIn} className="">
         <div className="form-outline mb-4">
@@ -84,7 +108,7 @@ const Login = () => {
         </div>
 
         <button type="submit" className="btn btn-primary btn-block mb-4 w-100">
-          Login
+          Se connecter
         </button>
       </form>
     </div>
