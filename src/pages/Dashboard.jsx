@@ -1,14 +1,20 @@
 import React from "react";
-import { useAuthState } from "react-firebase-hooks/auth";
-import { auth } from "../firebase";
+import Chat from "../components/Chat";
+import Contenu from "../components/Contenu";
 
 const Dashboard = () => {
-  const [user] = useAuthState(auth);
-
   return (
-    <div>
-      {user && <p>Welcome, {user.email}!</p>}
-      {/* Other dashboard content */}
+    <div className="container-fluid dashboard">
+      <div className="row fillparent">
+        {/* Section contenu  */}
+        <Contenu />
+
+        {/* Section Edition de contenu  */}
+        <div className="col m-2 border rounded">Edit</div>
+
+        {/* Section chat  */}
+        <Chat />
+      </div>
     </div>
   );
 };

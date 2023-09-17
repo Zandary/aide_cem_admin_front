@@ -5,3 +5,11 @@
 .mainIcon {
   height: 5vh;
 }
+
+.dashboard {
+  height: 92%;
+}
+
+.fillparent {
+  height: 100%;
+}

@@ -12,8 +12,8 @@ import Dashboard from './pages/Dashboard';
 import Navbar from './components/Navbar';
 
 function App() {
-  return (<Router>
-    <div>
+  return (<Router >
+    <div className="h-100">
       {/* Navigation Links */}
       <Navbar/>
 
