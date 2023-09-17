@@ -1,16 +1,20 @@
 import React from "react";
 import Chat from "../components/Chat";
 import Contenu from "../components/Contenu";
+import Edit from "../components/Edit";
+import { DataProvider } from "../controllers/DataContext";
 
 const Dashboard = () => {
   return (
     <div className="container-fluid dashboard">
       <div className="row fillparent">
-        {/* Section contenu  */}
-        <Contenu />
+        <DataProvider>
+          {/* Section contenu  */}
+          <Contenu />
 
-        {/* Section Edition de contenu  */}
-        <div className="col m-2 border rounded">Edit</div>
+          {/* Section Edition de contenu  */}
+          <Edit />
+        </DataProvider>
 
         {/* Section chat  */}
         <Chat />
