@@ -7,7 +7,7 @@ import { DataProvider } from "../controllers/DataContext";
 const Dashboard = () => {
   return (
     <div className="container-fluid dashboard">
-      <div className="row fillparent">
+      <div className="row">
         <DataProvider>
           {/* Section contenu  */}
           <Contenu />
@@ -19,6 +19,7 @@ const Dashboard = () => {
         {/* Section chat  */}
         <Chat />
       </div>
+      <div className="row h-25 border rounded">Footer Content</div>
     </div>
   );
 };

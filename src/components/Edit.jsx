@@ -5,10 +5,11 @@ import { DataContext } from "../controllers/DataContext";
 const Edit = () => {
   const { data, selectedId } = useContext(DataContext); // Use the context
   const [formTitre, setFormTitre] = useState("");
+  const [selectedArticle, setSelectedArticle] = useState({});
 
   useEffect(() => {
     console.log("TYPE ", typeof data.sunupay);
-    if (data.sunupay === undefined) {
+    if (data.sunupay === "undefined") {
       console.log("data.sunupay not found");
       setFormTitre("Selectionnez un titre");
     } else {
@@ -17,14 +18,19 @@ const Edit = () => {
           setFormTitre(
             data.sunupay.find((article) => article._id === selectedId).titre
           );
+          setSelectedArticle(
+            data.sunupay.find((article) => article._id === selectedId)
+          );
         }
       } catch (error) {
         console.error(error);
       }
     }
-  }, [data.sunupay, selectedId, setFormTitre]);
+  }, [data.sunupay, selectedId, setFormTitre, selectedArticle]);
 
+  console.log("SELECTED ARTICLE: ", selectedArticle.contenu);
   console.log(data.nyvolako);
+
   return (
     <div className="card col m-2 border rounded">
       <div className="card-header text-center fw-bold">Edition</div>
@@ -53,6 +59,33 @@ const Edit = () => {
               type="text"
               className="form-control"
               aria-describedby="emailHelp"
+            ></input>
+          </div>
+
+          {selectedArticle &&
+            selectedArticle.contenu &&
+            selectedArticle.contenu.map((elements) =>
+              elements.texte.map((paragraph) => (
+                <div className="mb-3">
+                  <textarea
+                    className="form-control"
+                    id="exampleFormControlTextarea1"
+                    rows="3"
+                    value={paragraph}
+                  ></textarea>
+                </div>
+              ))
+            )}
+
+          <div className="mb-3">
+            <label htmlFor="formFileMultiple" className="form-label">
+              Insérer des images
+            </label>
+            <input
+              className="form-control"
+              type="file"
+              id="formFileMultiple"
+              multiple
             ></input>
           </div>
         </form>
