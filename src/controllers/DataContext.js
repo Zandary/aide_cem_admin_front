@@ -14,6 +14,7 @@ export function DataProvider({ children }) {
     try {
       axios.get("https://aide-cem-server.onrender.com/nyvolako").then((response) => {
       setNyvolako(response.data);
+      console.log("Got :", response.data);
     });
     } catch (error) {
       // Handle errors here
@@ -35,6 +36,7 @@ export function DataProvider({ children }) {
     try {
       axios.get("https://aide-cem-server.onrender.com/sunupay").then((response) => {
       setSunupay(response.data);
+      console.log("Got :", sunupay);
     });
     } catch (error) {
       // Handle errors here
@@ -52,7 +54,6 @@ export function DataProvider({ children }) {
     }
     }
     
-    setData({nyvolako: nyvolako, sunupay: sunupay});
   }, []);
 
   useEffect(() => {
