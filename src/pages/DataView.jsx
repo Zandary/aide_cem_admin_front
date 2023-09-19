@@ -8,10 +8,10 @@ const DataView = () => {
   return (
     <div className="grid card">
       <DataProvider>
-        <div className="col-8">
+        <div className="col-9">
           <DataTableView />
         </div>
-        <div className="col-4">
+        <div className="col-3">
           <ChatAndLog />
         </div>
       </DataProvider>

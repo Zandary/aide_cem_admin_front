@@ -6,16 +6,11 @@ import { Image } from "primereact/image";
 import { InputText } from "primereact/inputtext";
 import { InputTextarea } from "primereact/inputtextarea";
 import { ContextMenu } from "primereact/contextmenu"; //To fix fa tsy mandeha
-import { Dialog } from "primereact/dialog";
-import { Editor } from "primereact/editor";
 
 const DataTableView = () => {
   const { data } = useContext(DataContext);
-  console.log(data.nyvolako);
   const [donnee, setDonnee] = useState([]);
   const [expandedRows, setExpandedRows] = useState(null);
-  const [visibleDialog, setVisibleDialog] = useState(false);
-  const [text, setText] = useState(""); //state for RTE
   const contextMenu = useRef(null);
   const contextMenuItems = [
     { label: "Ajouter", icon: "pi pi-fw pi-search" },
@@ -24,7 +19,6 @@ const DataTableView = () => {
 
   useEffect(() => {
     setDonnee(data.nyvolako);
-    console.log("Donnée :", donnee);
   }, [data, donnee]);
 
   const allowExpansion = (rowData) => {
@@ -32,10 +26,7 @@ const DataTableView = () => {
   };
 
   const imageBodyTemplate = (rowData) => {
-    console.log("ROW DATA:: ", rowData.image ? rowData.image.nom : "NO IMAGE");
-
     if (rowData.image && rowData.image.nom) {
-      console.log("IMG:: ", `${rowData.image.nom}.png`);
       return (
         <Image
           src={`images/${rowData.image.nom}.png`}
@@ -68,24 +59,15 @@ const DataTableView = () => {
 
   const textEditor = (options) => {
     if (options.field === "texte") {
-      setVisibleDialog(true);
       return (
-        <Dialog
-          value={options.value}
-          header="Header"
-          visible={visibleDialog}
-          style={{ width: "50vw" }}
-          onHide={() => setVisibleDialog(false)}
-          // onChange={(e) => options.editorCallback(e.target.value)} //
-        >
-          <div className="card">
-            <Editor
-              value={text}
-              onTextChange={(e) => setText(e.htmlValue)}
-              style={{ height: "320px" }}
-            />
-          </div>
-        </Dialog>
+        <div id="dialogAnchor">
+          <InputTextarea
+            value={options.value}
+            onChange={(e) => options.editorCallback(e.target.value)}
+            rows={5}
+            cols={100}
+          />
+        </div>
       );
     } else {
       return (
@@ -93,6 +75,8 @@ const DataTableView = () => {
           type="text"
           value={options.value}
           onChange={(e) => options.editorCallback(e.target.value)}
+          cols={100}
+          className="p-inputtext-sm flex align-items-center justify-content-center"
         />
       );
     }
@@ -132,8 +116,9 @@ const DataTableView = () => {
   };
 
   return (
-    <div className="card">
+    <div className="card p-2 border-1 border-round shadow-4 surface-border">
       <DataTable
+        size="small"
         editMode="cell"
         maximizable
         scrollable
@@ -145,12 +130,14 @@ const DataTableView = () => {
         expandedRows={expandedRows}
       >
         <Column
+          className="text-justify"
           editor={(options) => cellEditor(options)}
           onCellEditComplete={onCellEditComplete}
           expander={allowExpansion}
           style={{ width: "5rem" }}
         />
         <Column
+          className="text-justify"
           editor={(options) => cellEditor(options)}
           onCellEditComplete={onCellEditComplete}
           field="numero"
@@ -158,6 +145,7 @@ const DataTableView = () => {
           sortable
         ></Column>
         <Column
+          className="text-justify"
           editor={(options) => cellEditor(options)}
           onCellEditComplete={onCellEditComplete}
           field="titre"

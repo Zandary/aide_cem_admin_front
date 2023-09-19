@@ -26,8 +26,8 @@ import 'primeicons/primeicons.css';
         
 
 function App() {
-  return (<Router >
-    <div className="h-full">
+  return (<Router>
+    <div className="h-screen p-2 surface-0">
       {/* Navigation Links */}
       <Navbar/>
 
