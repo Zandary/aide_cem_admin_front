@@ -17,6 +17,7 @@ const ChatAndLog = () => {
         model={items}
         activeIndex={activeIndex}
         onTabChange={(e) => setActiveIndex(e.index)}
+        className="h-3rem"
       />
       {activeIndex === 1 ? <Logs /> : <Chat />}
     </div>

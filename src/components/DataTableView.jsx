@@ -116,8 +116,9 @@ const DataTableView = () => {
   };
 
   return (
-    <div className="card p-2 border-1 border-round shadow-4 surface-border">
+    <div className="card p-2 border-1 border-round shadow-4 surface-border surface-0">
       <DataTable
+        className="surface-0"
         size="small"
         editMode="cell"
         maximizable
@@ -130,14 +131,14 @@ const DataTableView = () => {
         expandedRows={expandedRows}
       >
         <Column
-          className="text-justify"
+          className="text-justify surface-0"
           editor={(options) => cellEditor(options)}
           onCellEditComplete={onCellEditComplete}
           expander={allowExpansion}
           style={{ width: "5rem" }}
         />
         <Column
-          className="text-justify"
+          className="text-justify surface-0"
           editor={(options) => cellEditor(options)}
           onCellEditComplete={onCellEditComplete}
           field="numero"
@@ -145,7 +146,7 @@ const DataTableView = () => {
           sortable
         ></Column>
         <Column
-          className="text-justify"
+          className="text-justify surface-0"
           editor={(options) => cellEditor(options)}
           onCellEditComplete={onCellEditComplete}
           field="titre"

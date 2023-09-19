@@ -25,7 +25,9 @@ const Navbar = () => {
     ></img>
   );
 
-  return <Menubar model={menu} start={start} className="m-2 shadow-4" />;
+  return (
+    <Menubar model={menu} start={start} className="m-2 shadow-4 surface-0" />
+  );
 };
 
 export default Navbar;
