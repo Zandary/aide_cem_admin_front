@@ -10,6 +10,7 @@ import SignUp from './pages/SignUp';
 import NotFound from './pages/NotFound';
 import Dashboard from './pages/Dashboard';
 import DataView from './pages/DataView';
+import SignIn from './pages/SignIn';
 
 import Navbar from './components/Navbar';
 
@@ -34,10 +35,10 @@ function App() {
       {/* Define Routes */}
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/login" element={<Login />} />
+        <Route path="/login" element={<SignIn />} />
         <Route path="/signup" element={<SignUp />} />
-        <Route path="/dashboard" element={<Dashboard />} />
-        <Route path="/dataview" element={<DataView />} />
+        <Route path="/dashboard" element={<DataView/>} />
+        <Route path="/dataview" element={<Dashboard/>} />
 
         {/* Handle 404 or unknown routes */}
         <Route path="*" element={<NotFound />} />

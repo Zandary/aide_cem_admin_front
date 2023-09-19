@@ -50,22 +50,6 @@ const Chat = () => {
           </AccordionTab>
         </Accordion>
       </div>
-      <div className="input-group mb-3">
-        <input
-          type="text"
-          className="form-control"
-          placeholder="Votre message..."
-          aria-label="Message"
-          aria-describedby="button-addon2"
-        ></input>
-        <button
-          className="btn btn-outline-secondary"
-          type="button"
-          id="button-addon2"
-        >
-          <AiOutlineSend />
-        </button>
-      </div>
     </div>
   );
 };

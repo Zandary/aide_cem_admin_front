@@ -15,7 +15,7 @@
 }
 
 .p-accordion .p-accordion-header .p-accordion-header-link {
-  padding: 0.5rem;
+  padding: 0.5rem !important;
 }
 
 /* Loader design  */

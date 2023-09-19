@@ -75,8 +75,7 @@ const DataTableView = () => {
           type="text"
           value={options.value}
           onChange={(e) => options.editorCallback(e.target.value)}
-          cols={100}
-          className="p-inputtext-sm flex align-items-center justify-content-center"
+          className="p-inputtext-sm w-10 flex align-items-center"
         />
       );
     }
@@ -85,6 +84,10 @@ const DataTableView = () => {
   const cellEditor = (options) => {
     return textEditor(options);
   };
+
+  // const texteBodyTemplate = (option) => {
+  //   return <p className="text-justify">{option}</p>;
+  // };
 
   const rowExpansionTemplate = (data) => {
     return (
@@ -100,6 +103,8 @@ const DataTableView = () => {
           onCellEditComplete={onCellEditComplete}
           field="texte"
           header="Texte"
+          className="text-justify"
+          // body={texteBodyTemplate}
         ></Column>
         <ContextMenu
           model={contextMenuItems}
@@ -121,9 +126,8 @@ const DataTableView = () => {
         className="surface-0"
         size="small"
         editMode="cell"
-        maximizable
         scrollable
-        scrollHeight="80vh"
+        scrollHeight="75vh"
         value={donnee}
         tableStyle={{ minWidth: "50rem" }}
         onRowToggle={(e) => setExpandedRows(e.data)}
