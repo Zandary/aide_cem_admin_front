@@ -1,6 +1,8 @@
 import React, { useContext, useState, useEffect } from "react";
 import { useData } from "../controllers/DataContext";
 import { DataContext } from "../controllers/DataContext";
+import { Fieldset } from "primereact/fieldset";
+import { InputText } from "primereact/inputtext";
 
 const Edit = () => {
   const { data, selectedId } = useContext(DataContext); // Use the context
@@ -32,8 +34,7 @@ const Edit = () => {
   console.log(data.nyvolako);
 
   return (
-    <div className="card col m-2 border rounded">
-      <div className="card-header text-center fw-bold">Edition</div>
+    <Fieldset legend="Edition">
       <div>Selected ID: {selectedId}</div>
       {/* {data.sunupay[0].titre } */}
       <div>
@@ -42,13 +43,19 @@ const Edit = () => {
             <label htmlFor="titre" className="form-label">
               Titre
             </label>
-            <input
+            {/* <input
               id="titre"
               type="text"
               className="form-control"
               value={formTitre}
               onChange={(e) => setFormTitre(e.target.value)}
-            ></input>
+            ></input> */}
+            <InputText
+              onChange={(e) => setFormTitre(e.target.value)}
+              value={formTitre}
+              placeholder="Username"
+              className="p-inputtext-sm"
+            />
           </div>
 
           <div className="mb-3">
@@ -90,7 +97,7 @@ const Edit = () => {
           </div>
         </form>
       </div>
-    </div>
+    </Fieldset>
   );
 };
 

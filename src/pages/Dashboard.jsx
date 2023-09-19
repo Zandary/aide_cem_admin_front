@@ -6,20 +6,23 @@ import { DataProvider } from "../controllers/DataContext";
 
 const Dashboard = () => {
   return (
-    <div className="container-fluid dashboard">
-      <div className="row">
+    <div className="dashboard">
+      <div className="grid">
         <DataProvider>
           {/* Section contenu  */}
-          <Contenu />
+          <Contenu className="col-4" />
 
           {/* Section Edition de contenu  */}
-          <Edit />
+          <Edit className="col-4" />
         </DataProvider>
 
         {/* Section chat  */}
-        <Chat />
+        <Chat className="col-4" />
       </div>
-      <div className="row h-25 border rounded">Footer Content</div>
+
+      <div className="grid">
+        <div className="col"> Footer Content</div>
+      </div>
     </div>
   );
 };

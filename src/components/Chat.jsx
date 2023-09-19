@@ -1,10 +1,10 @@
 import React from "react";
 import { AiOutlineSend } from "react-icons/ai";
+import { Fieldset } from "primereact/fieldset";
 
 const Chat = () => {
   return (
-    <div className="card col m-2 border rounded">
-      <div className="card-header text-center fw-bold">Messages</div>
+    <div>
       <div className="accordion" id="accordionExample">
         <div className="accordion-item">
           <h2 className="accordion-header" id="headingTwo">

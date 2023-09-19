@@ -1,7 +1,11 @@
 import React, { useState, useEffect } from "react";
 import { auth, app } from "../firebase";
-import { signInWithEmailAndPassword, setPersistence, browserLocalPersistence, onAuthStateChanged } from "firebase/auth";
-import "bootstrap/dist/css/bootstrap.min.css";
+import {
+  signInWithEmailAndPassword,
+  setPersistence,
+  browserLocalPersistence,
+  onAuthStateChanged,
+} from "firebase/auth";
 import { useNavigate } from "react-router";
 
 const Login = () => {
@@ -22,7 +26,7 @@ const Login = () => {
         setUser(null);
       }
     });
-  
+
     // Clean up the listener when the component unmounts
     return () => unsubscribe();
   }, []);

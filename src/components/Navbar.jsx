@@ -1,48 +1,31 @@
 import React from "react";
 
-const Navbar = () => {
-  return (
-    <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
-      <a className="navbar-brand" href="/">
-        <img
-          src="./logo192.png"
-          className="mainIcon"
-          alt="icone principale"
-        ></img>
-      </a>
-      <button
-        className="navbar-toggler"
-        type="button"
-        data-toggle="collapse"
-        data-target="#navbarSupportedContent"
-        aria-controls="navbarSupportedContent"
-        aria-expanded="false"
-        aria-label="Toggle navigation"
-      >
-        <span className="navbar-toggler-icon"></span>
-      </button>
+import { Menubar } from "primereact/menubar";
 
-      <div className="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul className="navbar-nav mr-auto">
-          <li className="nav-item active">
-            <a className="nav-link" href="/">
-              Accueil
-            </a>
-          </li>
-          <li className="nav-item">
-            <a className="nav-link" href="/login">
-              Connexion
-            </a>
-          </li>
-          <li className="nav-item">
-            <a className="nav-link" href="/signup">
-              Inscription
-            </a>
-          </li>
-        </ul>
-      </div>
-    </nav>
+const Navbar = () => {
+  const menu = [
+    {
+      label: "Accueil",
+      url: "/",
+    },
+    {
+      label: "Connexion",
+      url: "/login",
+    },
+    { label: "Dashboard", url: "/dashboard" },
+    { label: "DataView", url: "/dataview" },
+  ];
+
+  const start = (
+    <img
+      src="./logo192.png"
+      className="mainIcon"
+      alt="icone principale"
+      href="/"
+    ></img>
   );
+
+  return <Menubar model={menu} start={start} />;
 };
 
 export default Navbar;
