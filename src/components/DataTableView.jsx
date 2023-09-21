@@ -6,16 +6,26 @@ import { Image } from "primereact/image";
 import { InputText } from "primereact/inputtext";
 import { InputTextarea } from "primereact/inputtextarea";
 import { ContextMenu } from "primereact/contextmenu"; //To fix fa tsy mandeha
+import { useForm } from "react-hook-form";
 
 const DataTableView = () => {
   const { data } = useContext(DataContext);
   const [donnee, setDonnee] = useState([]);
   const [expandedRows, setExpandedRows] = useState(null);
+  const {
+    register,
+    handleSubmit,
+    watch,
+    formState: { errors },
+  } = useForm();
   const contextMenu = useRef(null);
   const contextMenuItems = [
     { label: "Ajouter", icon: "pi pi-fw pi-search" },
     { label: "Delete", icon: "pi pi-fw pi-trash" },
   ];
+
+  const onSubmit = (data) => console.log(data);
+  console.log(watch("example")); // watch input value by passing the name of it
 
   useEffect(() => {
     setDonnee(data.nyvolako);
@@ -63,7 +73,10 @@ const DataTableView = () => {
         <div id="dialogAnchor">
           <InputTextarea
             value={options.value}
-            onChange={(e) => options.editorCallback(e.target.value)}
+            onChange={(e) => {
+              options.editorCallback(e.target.value);
+              console.log("OPTIONS  :  ", options);
+            }}
             rows={5}
             cols={100}
           />
@@ -122,41 +135,43 @@ const DataTableView = () => {
 
   return (
     <div className="card p-2 border-1 border-round shadow-4 surface-border surface-0">
-      <DataTable
-        className="surface-0"
-        size="small"
-        editMode="cell"
-        scrollable
-        scrollHeight="75vh"
-        value={donnee}
-        tableStyle={{ minWidth: "50rem" }}
-        onRowToggle={(e) => setExpandedRows(e.data)}
-        rowExpansionTemplate={rowExpansionTemplate}
-        expandedRows={expandedRows}
-      >
-        <Column
-          className="text-justify surface-0"
-          editor={(options) => cellEditor(options)}
-          onCellEditComplete={onCellEditComplete}
-          expander={allowExpansion}
-          style={{ width: "5rem" }}
-        />
-        <Column
-          className="text-justify surface-0"
-          editor={(options) => cellEditor(options)}
-          onCellEditComplete={onCellEditComplete}
-          field="numero"
-          header="Num"
-          sortable
-        ></Column>
-        <Column
-          className="text-justify surface-0"
-          editor={(options) => cellEditor(options)}
-          onCellEditComplete={onCellEditComplete}
-          field="titre"
-          header="Titre"
-        ></Column>
-      </DataTable>
+      <form onSubmit={handleSubmit(onSubmit)}>
+        <DataTable
+          className="surface-0"
+          size="small"
+          editMode="cell"
+          scrollable
+          scrollHeight="75vh"
+          value={donnee}
+          tableStyle={{ minWidth: "50rem" }}
+          onRowToggle={(e) => setExpandedRows(e.data)}
+          rowExpansionTemplate={rowExpansionTemplate}
+          expandedRows={expandedRows}
+        >
+          <Column
+            className="text-justify surface-0"
+            editor={(options) => cellEditor(options)}
+            onCellEditComplete={onCellEditComplete}
+            expander={allowExpansion}
+            style={{ width: "5rem" }}
+          />
+          <Column
+            className="text-justify surface-0"
+            editor={(options) => cellEditor(options)}
+            onCellEditComplete={onCellEditComplete}
+            field="numero"
+            header="Num"
+            sortable
+          ></Column>
+          <Column
+            className="text-justify surface-0"
+            editor={(options) => cellEditor(options)}
+            onCellEditComplete={onCellEditComplete}
+            field="titre"
+            header="Titre"
+          ></Column>
+        </DataTable>
+      </form>
     </div>
   );
 };

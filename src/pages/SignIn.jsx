@@ -73,7 +73,7 @@ const SignIn = () => {
           </span>
           <a
             className="font-medium no-underline ml-2 text-blue-500 cursor-pointer"
-            href="#"
+            href="/signup"
           >
             Créer un compte
           </a>

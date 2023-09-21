@@ -1,6 +1,10 @@
 import React, { useState } from "react";
 import { auth, app } from "../firebase";
 import { createUserWithEmailAndPassword } from "firebase/auth";
+import { useNavigate } from "react-router";
+import { InputText } from "primereact/inputtext";
+import { Button } from "primereact/button";
+import { Tooltip } from "primereact/tooltip";
 
 const SignUp = () => {
   const [email, setEmail] = useState("");
@@ -9,7 +13,6 @@ const SignUp = () => {
   const [code, setCode] = useState("");
   const [disableButton, setDisableButton] = useState(false);
   const [isEmailValid, setIsEmailValid] = useState(true); // Step 1: Add state variable
-
 
   console.log(email, password);
 
@@ -44,77 +47,95 @@ const SignUp = () => {
   };
 
   return (
-    <div className="container border rounded w-50 align-items-center">
+    <div className="flex align-items-center justify-content-center">
       <p>Inscription</p>
-      <form onSubmit={signUp}>
+      <form
+        onSubmit={signUp}
+        className="surface-card p-4 shadow-2 border-round w-15"
+      >
         <div className="form-outline mb-4">
-          <input
+          <label
+            htmlFor="form2Example1-1"
+            className="block text-900 font-medium mb-2"
+          >
+            Email
+          </label>
+          <InputText
             id="form2Example1-1"
-            className="form-control"
+            className="w-full mb-3"
             type="email"
             name=""
             placeholder="Email"
             value={email}
             onChange={handleEmailChange}
           />
-          <label className="form-label" for="form2Example1-1">
-            Adresse Mail
-          </label>
         </div>
 
         <div className="form-outline mb-4">
-          <input
+          <label
+            className="block text-900 font-medium mb-2"
+            htmlFor="form2Example1-2"
+          >
+            Mot de passe
+          </label>
+          <InputText
             id="form2Example1-2"
-            className="form-control"
+            className="w-full mb-3"
             type="password"
             name=""
             placeholder="Mot de passe"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
           />
-          <label className="form-label" htmlFor="form2Example1-2">
-            Mot de passe
-          </label>
         </div>
 
         <div className="form-outline mb-4">
-          <input
+          <label
+            className="block text-900 font-medium mb-2"
+            htmlFor="form2Example1-4"
+          >
+            Confirmez votre mot de passe
+          </label>
+          <InputText
             id="form2Example1-4"
-            className="form-control"
+            className="w-full mb-3"
             type="password"
             name=""
             placeholder="Confirmez votre mot de passe"
             value={password2}
             onChange={handlePassword2Change}
           />
-          <label className="form-label" htmlFor="form2Example1-4">
-            Mot de passe
-          </label>
         </div>
 
         <div className="form-outline mb-4">
-          <input
+          <label className="form-label" htmlFor="form2Example1-4">
+            <Tooltip target=".custom-target-icon" />
+            Code confidentiel{" "}
+            <i
+              data-pr-tooltip="No notifications"
+              data-pr-position="right"
+              className=".custom-target-icon pi pi-info-circle"
+            ></i>
+          </label>
+          <InputText
             id="form2Example1-4"
-            className="form-control"
+            className="w-full mb-3"
             type="text"
             name=""
             placeholder="Code confidentiel"
             value={code}
             onChange={(e) => setCode(e.target.value)}
           />
-          <label className="form-label" htmlFor="form2Example1-4">
-            Code confidentiel
-          </label>
         </div>
 
-        <button type="submit" className="btn btn-primary btn-block mb-4 w-100"
-        disabled={disableButton}>
-          S'inscrire
-        </button>
+        <Button
+          type="submit"
+          label="S'inscrire"
+          className="w-full"
+          disabled={disableButton}
+        ></Button>
 
-        {!isEmailValid && (
-          <p className="small">Addresse mail non valide</p>
-        )}
+        {!isEmailValid && <p className="small">Addresse mail non valide</p>}
         {disableButton && (
           <p className="small">Les mots de passe ne correspondent pas</p>
         )}

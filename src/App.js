@@ -8,7 +8,6 @@ import Home from './pages/Home';
 import Login from './pages/Login';
 import SignUp from './pages/SignUp';
 import NotFound from './pages/NotFound';
-import Dashboard from './pages/Dashboard';
 import DataView from './pages/DataView';
 import SignIn from './pages/SignIn';
 
@@ -38,7 +37,6 @@ function App() {
         <Route path="/login" element={<SignIn />} />
         <Route path="/signup" element={<SignUp />} />
         <Route path="/dashboard" element={<DataView/>} />
-        <Route path="/dataview" element={<Dashboard/>} />
 
         {/* Handle 404 or unknown routes */}
         <Route path="*" element={<NotFound />} />
