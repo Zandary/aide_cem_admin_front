@@ -98,10 +98,6 @@ const DataTableView = () => {
     return textEditor(options);
   };
 
-  // const texteBodyTemplate = (option) => {
-  //   return <p className="text-justify">{option}</p>;
-  // };
-
   const rowExpansionTemplate = (data) => {
     return (
       <DataTable editMode="cell" value={data.contenu}>
