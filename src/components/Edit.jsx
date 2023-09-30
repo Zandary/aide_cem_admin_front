@@ -36,20 +36,12 @@ const Edit = () => {
   return (
     <Fieldset legend="Edition">
       <div>Selected ID: {selectedId}</div>
-      {/* {data.sunupay[0].titre } */}
       <div>
         <form action="#">
           <div className="mb-3">
             <label htmlFor="titre" className="form-label">
               Titre
             </label>
-            {/* <input
-              id="titre"
-              type="text"
-              className="form-control"
-              value={formTitre}
-              onChange={(e) => setFormTitre(e.target.value)}
-            ></input> */}
             <InputText
               onChange={(e) => setFormTitre(e.target.value)}
               value={formTitre}

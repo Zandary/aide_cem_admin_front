@@ -3,6 +3,8 @@ import './App.css';
 import React from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 
+import usePersistentLogin from "./usePersistentLogin";
+
 // Importing route components
 import Home from './pages/Home';
 import Login from './pages/Login';
@@ -26,10 +28,20 @@ import 'primeicons/primeicons.css';
         
 
 function App() {
+  const { user, checkStoredCredentials, signInWithStoredCredentials } = usePersistentLogin();
+
+// Check stored credentials and sign in automatically
+checkStoredCredentials().then((credentials) => {
+  if (credentials) {
+    signInWithStoredCredentials(credentials);
+  }
+});
+
   return (<Router>
     <div className="h-screen p-2 surface-0">
       {/* Navigation Links */}
       <Navbar/>
+
 
       {/* Define Routes */}
       <Routes>
