@@ -17,6 +17,7 @@ const Navbar = () => {
       url: "/login",
     },
     { label: "Dashboard", url: "/dashboard" },
+    { label: "Forum", url: "/forum" },
   ];
 
   const start = (

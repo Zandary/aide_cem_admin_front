@@ -2,12 +2,13 @@ import './App.css';
 
 import React from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import ListePosts from './view/pages/ListePosts';
+import PostForm from './view/pages/PostForm';
 
-import usePersistentLogin from "./usePersistentLogin";
+// import usePersistentLogin from "./controllers/usePersistentLogin";
 
 // Importing route components
 import Home from './pages/Home';
-import Login from './pages/Login';
 import SignUp from './pages/SignUp';
 import NotFound from './pages/NotFound';
 import DataView from './pages/DataView';
@@ -28,14 +29,14 @@ import 'primeicons/primeicons.css';
         
 
 function App() {
-  const { user, checkStoredCredentials, signInWithStoredCredentials } = usePersistentLogin();
+  // const { user, checkStoredCredentials, signInWithStoredCredentials } = usePersistentLogin();
 
 // Check stored credentials and sign in automatically
-checkStoredCredentials().then((credentials) => {
-  if (credentials) {
-    signInWithStoredCredentials(credentials);
-  }
-});
+// checkStoredCredentials().then((credentials) => {
+//   if (credentials) {
+//     signInWithStoredCredentials(credentials);
+//   }
+// });
 
   return (<Router>
     <div className="h-screen p-2 surface-0">
@@ -49,6 +50,8 @@ checkStoredCredentials().then((credentials) => {
         <Route path="/login" element={<SignIn />} />
         <Route path="/signup" element={<SignUp />} />
         <Route path="/dashboard" element={<DataView/>} />
+        <Route path='/forum' element={<ListePosts />} />
+          <Route path='/create' element={<PostForm />} />
 
         {/* Handle 404 or unknown routes */}
         <Route path="*" element={<NotFound />} />
