@@ -4,6 +4,7 @@ import React from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import ListePosts from './view/pages/ListePosts';
 import PostForm from './view/pages/PostForm';
+import { AuthProvider } from './controllers/AuthContext';
 
 // import usePersistentLogin from "./controllers/usePersistentLogin";
 
@@ -40,7 +41,8 @@ function App() {
 
   return (<Router>
     <div className="h-screen p-2 surface-0">
-      {/* Navigation Links */}
+      <AuthProvider>
+        {/* Navigation Links */}
       <Navbar/>
 
 
@@ -56,6 +58,8 @@ function App() {
         {/* Handle 404 or unknown routes */}
         <Route path="*" element={<NotFound />} />
       </Routes>
+      </AuthProvider>
+      
     </div>
   </Router>
     

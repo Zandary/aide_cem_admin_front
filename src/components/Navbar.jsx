@@ -1,11 +1,12 @@
-import React, { useState, useEffect } from "react";
-import { InputSwitch } from "primereact/inputswitch";
+import React, { useEffect, useContext } from "react";
+import { AuthContext } from "../controllers/AuthContext";
 import { Menubar } from "primereact/menubar";
-import { PrimeReactContext } from "primereact/api";
+import { Button } from 'primereact/button';
+import { useNavigate } from "react-router";
 
 const Navbar = () => {
-  const [checked, setChecked] = useState(true);
-  const [theme, setTheme] = useState("dark");
+  const navigate = useNavigate("");
+  const { isLoggedIn, setIsLoggedIn } = useContext(AuthContext);
 
   const menu = [
     {
@@ -16,9 +17,17 @@ const Navbar = () => {
       label: "Connexion",
       url: "/login",
     },
-    { label: "Dashboard", url: "/dashboard" },
     { label: "Forum", url: "/forum" },
   ];
+
+  if (isLoggedIn) {
+    menu.push({ label: "Dashboard", url: "/dashboard" });
+  }
+  
+  const logout = () => {
+    setIsLoggedIn(false)
+    navigate("/login");
+  } 
 
   const start = (
     <img
@@ -31,9 +40,9 @@ const Navbar = () => {
 
   const end = (
     <div className="flex align-items-center gap-1">
-      <i className="pi pi-moon"></i>
-      <InputSwitch checked={checked} onChange={(e) => setChecked(e.value)} />
-      <i className="pi pi-sun"></i>
+      
+      <Button icon="pi pi-power-off" onClick={logout} size="small"/>
+      {isLoggedIn ? "true" : "false"}
     </div>
   );
 

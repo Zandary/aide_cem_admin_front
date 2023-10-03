@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { auth, app } from "../firebase";
 import {
   signInWithEmailAndPassword,
@@ -10,9 +10,11 @@ import { useNavigate } from "react-router";
 import { InputText } from "primereact/inputtext";
 import { Button } from "primereact/button";
 import { Checkbox } from "primereact/checkbox";
+import { AuthContext } from "../controllers/AuthContext";
 
 const SignIn = () => {
   const navigate = useNavigate("");
+  const { isLoggedIn, setIsLoggedIn } = useContext(AuthContext);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [user, setUser] = useState(null);
@@ -44,6 +46,7 @@ const SignIn = () => {
           .then(() => {
             // Signed in
             setUser(userCredential.user); // Update the user state
+            setIsLoggedIn(true);
             navigate("/dashboard");
             console.log(userCredential.user);
             // ...
@@ -114,9 +117,6 @@ const SignIn = () => {
               />
               <label htmlFor="rememberme">Se souvenir de moi</label>
             </div>
-            <a className="font-medium no-underline ml-2 text-blue-500 text-right cursor-pointer">
-              Forgot your password?
-            </a>
           </div>
 
           <Button

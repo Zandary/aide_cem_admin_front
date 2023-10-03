@@ -7,6 +7,7 @@ import { Button } from "primereact/button";
 import { Tooltip } from "primereact/tooltip";
 
 const SignUp = () => {
+  const navigate = useNavigate("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [password2, setPassword2] = useState("");
@@ -22,7 +23,7 @@ const SignUp = () => {
       .then((userCredential) => {
         // Signed in
         console.log(userCredential.user);
-        // ...
+        navigate("/login");
       })
       .catch((error) => {
         console.log(error);
@@ -48,7 +49,6 @@ const SignUp = () => {
 
   return (
     <div className="flex align-items-center justify-content-center">
-      <p>Inscription</p>
       <form
         onSubmit={signUp}
         className="surface-card p-4 shadow-2 border-round w-15"
@@ -108,9 +108,10 @@ const SignUp = () => {
         </div>
 
         <div className="form-outline mb-4">
-          <label className="form-label" htmlFor="form2Example1-4">
+          <label className="form-label" htmlFor="form2Example1-5">
+            Code confidentiel
             <Tooltip target=".custom-target-icon" />
-            Code confidentiel{" "}
+            {" "}
             <i
               data-pr-tooltip="No notifications"
               data-pr-position="right"
@@ -118,7 +119,7 @@ const SignUp = () => {
             ></i>
           </label>
           <InputText
-            id="form2Example1-4"
+            id="form2Example1-5"
             className="w-full mb-3"
             type="text"
             name=""
