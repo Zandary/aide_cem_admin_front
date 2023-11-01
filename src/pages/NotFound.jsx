@@ -1,7 +1,7 @@
 import React from "react";
 
 const NotFound = () => {
-  return <div>NotFound</div>;
+  return <div>Addresse Introuvable</div>;
 };
 
 export default NotFound;

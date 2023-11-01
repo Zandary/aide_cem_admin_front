@@ -29,7 +29,7 @@ const PostView = (props) => {
     <Card
       title={props.post.title}
       subTitle={formatDate(props.post.createdAt)}
-      className="w-8 my-1"
+      className="lg:w-8 sm:w-max p-0 my-1"
     >
       <p className="h-auto p-4 my-1 border-1 surface-border border-round">
         {props.post.corps}
